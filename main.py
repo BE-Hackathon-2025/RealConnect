@@ -8,18 +8,20 @@ backend = fastapi.FastAPI()
 def root():
     return "Hello World"
 
-@backend.get("/services")
+@backend.get("api/services")
 def services():
     return {"I am a teapot.": "I am a teapot."}
 
-@backend.post("/teapot")
-def post():
+@backend.post("api/ai/recommendations")
+
+@backend.post("api/services/search")
+def searchServices():
+    return {}
+
+@backend.post("/api/community/message")
+def sendMessage():
     pass
 
-@backend.post("/message")
-def send_message():
-    pass
-
-@backend.get("/communitywall")
+@backend.get("/api/community/wall")
 def get_message():
     return {"Wall": {"Brick": "Cement"}}
