@@ -1,20 +1,24 @@
-### TL;DR 🚨 
-This is a repository template containing all the information that needs to accompany your project.
+_______________
+# Falcon Flyers
 
-Feel free to use any languages or frameworks, but the following information must be filled out in your project's README before hacking ends.
-_______________
-_______________
 
 # Project Name
 
 ## Challenge Statement(s) Addressed 🎯
 ### Real World Solutions for Today's Communities
-Developing a cutting-edge software application that harnesses the power of artiicial intelligence to solve a significant challenge or enhance the quality of life in your local community. 
+Developing a cutting-edge software application that harnesses the power of artiicial intelligence to solve a significant challenge or enhance the quality of life in your local community. Your solution should:
+* Clearly identify and validate a critical issue or opportunity, using data-driven insights or community engagement.
+* Employ advanced AI technologies—such as generative AI, machine learning, natural language processing, or computer vision—to create practical, real-world solutions.
+* Demonstrate measurable, positive outcomes for community members, supported by clear metrics and evidence.
+* Design for scalability and adaptability, ensuring your solution can be deployed in similar communities facing comparable challenges.
+* Present a compelling business case, highlighting return on investment (ROI), operational efficiency, or tangible performance improvements.
+* Align with the sponsor's brand values, commitment to social responsibility, and strategic objectives.
 
+**Key Considerations**
+* Integrate responsible AI practices, prioritizing ethical considerations, data privacy, transparency, and fairness in your solution.
+* Focus on user-centric design to ensure accessibility, inclusivity, and a seamless user experience.
+* Draw inspiration from successful real-world AI applications, such as predictive analytics for public health, AI-powered education tools, or smart city infrastructure solutions.
 
-Examples:
-* How might we decrease the United States chances of alien and monster attacks given what we know from popular alien and monster movies?
-* How might we ....
 
 ## Project Description 🤯
 **....at least 3 sentences describing what the project does and how it works**
@@ -25,22 +29,17 @@ Examples:
 ## Tech Overview 💻
 **... what tech was used to bring this project to life?**
 
-Example:
-* FastAPI
-* Hugging Face AI Models
-* Next.js
-* Java
-* ReactJS
+
 
 ### Link to Demo Presentation 📽
 [Canva](https://www.canva.com/design/DAG4BsQXPII/nbCLyoegkphp4-dw-x0LTg/view?utm_content=DAG4BsQXPII&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8b0ff2427f)
 
 ### Team Checklist ✅
-- [ ] Team photo
-- [ ] Team Slack channel
-- [ ] Communication established with mentor
-- [ ] Repo creation from this template
-- [ ] Flight Deck registration
+- ✅ Team photo
+- ✅ Team Slack channel
+- ✅ Communication established with mentor
+- ✅ Repo creation from this template
+- ✅ Flight Deck registration
 
 ### Project Checklist 🏁
 - [ ] Presentation complete and linked
@@ -53,7 +52,11 @@ Simmosn College of Kentucky
 Falcon Flyers
 
 ### ✨ Contributors ✨
-**...tell the world who you and your team are 🙂**
-* Oluwatamilore Adebiyi 
+
+Delegate/Chaperone: Prof. Dylan Scully<br> 
+American Airlines Mentor: Hannah
+
+Student Competitors:
+* Oluwatamilore Adebiyi [Team Lead]
 * Camaria Young
 * Kay'ne Campbell 
