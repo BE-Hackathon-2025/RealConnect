@@ -62,4 +62,4 @@ American Airlines Mentor: Hannah
 Student Competitors:
 * Oluwatamilore Adebiyi [Team Lead]
 * Camaria Young
-* Kayn'e Campbell 
+* Kayn'e Campbell
