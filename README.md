@@ -3,7 +3,7 @@ _______________
 
 
 # Project Name
-Genzerations/ Real World Connections (Working Title)
+Real World Connect
 
 
 ## Challenge Statement(s) Addressed 🎯
