@@ -1,12 +1,8 @@
 import React from "react";
 import "./App.css";
-import Chatbot from "./components/Chatbot";
+import Chatbot from "./components/chatbot";
 
 export default function App() {
-  const scrollToResources = () => {
-    document.getElementById("resources").scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
       {/* Navigation */}
@@ -26,7 +22,7 @@ export default function App() {
         <div className="hero-content">
           <h1>Welcome to The Real Connect!</h1>
           <p>Your bright path to wellness, essentials, and community support.</p>
-          <button className="find-help-btn" onClick={scrollToResources}>
+          <button className="find-help-btn">
             Find Help
           </button>
         </div>
