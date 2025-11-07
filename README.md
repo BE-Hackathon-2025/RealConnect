@@ -3,6 +3,8 @@ _______________
 
 
 # Project Name
+Real Connect
+
 
 ## Challenge Statement(s) Addressed 🎯
 ### Real World Solutions for Today's Communities
@@ -21,7 +23,8 @@ Developing a cutting-edge software application that harnesses the power of artii
 
 
 ## Project Description 🤯
-**....at least 3 sentences describing what the project does and how it works**
+A website that uses AI to direct people to connec
+
 
 ## Project Value 💰
 **....at least 3 sentences describing your target customer and tangible benefits from your solution**
@@ -46,7 +49,7 @@ Developing a cutting-edge software application that harnesses the power of artii
 - [ ] Code merged to main branch
 
 ### School Name 🏫
-Simmosn College of Kentucky
+Simmons College of Kentucky
 
 ### Team Name 🏷
 Falcon Flyers

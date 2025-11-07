@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Real Connect – Find Wellness & Community Resources</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-logo">The Real Connect</div>
+    <ul class="navbar-links">
+      <li><a href="#wellness">Wellness</a></li>
+      <li><a href="#essentials">Essentials</a></li>
+      <li><a href="#work">Work & Growth</a></li>
+      <li><a href="#learn">Learn & Level Up</a></li>
+      <li><a href="#community">Community Wall</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to The Real Connect!</h1>
+      <p>Your bright path to wellness, essentials, and community support.</p>
+      <button class="find-help-btn" onclick="scrollToResources()">Find Help</button>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+      <!-- Can add SVG/Illustration here -->
+    </div>
+  </header>
+
+  <!-- Example Resources Section (for Find Help scroll) -->
+  <section id="resources" class="resources-section">
+    <h2>Wellness, Essentials, Growth & More</h2>
+    <div class="card-grid">
+      <div class="resource-card">
+        <h3>Mental Health & Therapy</h3>
+        <p>Connect with local therapists and helplines for support.</p>
+      </div>
+      <div class="resource-card">
+        <h3>Fitness & Wellness</h3>
+        <p>Find fitness classes, wellness activities, and free groups.</p>
+      </div>
+      <div class="resource-card">
+        <h3>Food Assistance</h3>
+        <p>Food banks, pantry locations, and meal programs near you.</p>
+      </div>
+      <div class="resource-card">
+        <h3>Shelter & Housing</h3>
+        <p>Emergency shelters and rental assistance resources.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
+  </footer>
+
+  <!-- Chatbot Widget -->
+  <div id="chatbot-bubble" class="chatbot-bubble" onclick="openChatbot()">
+    <span>💬</span>
+  </div>
+  <div id="chatbot-container" class="chatbot-container">
+    <div class="chatbot-header">
+      <span>RealConnect Bot</span>
+      <button aria-label="Close" onclick="closeChatbot()">×</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+    <form id="chatbot-form" class="chatbot-form" onsubmit="handleChat(event)">
+      <input type="text" id="chatbot-input" placeholder="Ask for resources…" autocomplete="off" required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="chatbot.js"></script>
+  <script>
+    // "Find Help" scrolls to resource section
+    function scrollToResources() {
+      document.getElementById('resources').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
