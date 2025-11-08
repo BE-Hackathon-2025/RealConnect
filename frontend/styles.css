@@ -2,6 +2,7 @@
   --mint: hsl(64, 100%, 45%);
   --sky: #00106b;
   --coral: #ffffff;
+  --grey: #555;
   --yellow: #ffffff;
   --white: #06135a;
   --gray: #ffffff;
@@ -90,22 +91,6 @@ body {
   margin-bottom: 2em;
   color: #444;
 }
-.find-help-btn {
-  background: var(--coral);
-  color: var(--white);
-  font-size: 1.25em;
-  padding: 0.9em 2.5em;
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.find-help-btn:hover,
-.find-help-btn:focus {
-  background: var(--sky);
-  color: #204b3f;
-}
 
 /* Resources Section */
 .resources-section {
@@ -163,37 +148,11 @@ body {
   margin-top: 2em;
 }
 
-/* Chatbot Bubble and Widget */
-.chatbot-bubble {
-  position:absolute ;
-  top:200px;
-  /* bottom: 2em; */
-  right: 2em;
-  background: var(--sky);
-  color: var(--white);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  font-size: 5em;
-  z-index: 100;
-  transition: background 0.18s;
-}
-.chatbot-bubble:hover,
-.chatbot-bubble:focus {
-  background: var(--mint);
-}
+
 .chatbot-container {
-  display: none;
-  position: fixed;
-  bottom: 4.2em;
-  right: 2.2em;
-  width: 340px;
-  max-width: 96vw;
+  display: flex;
+  position: relative;
+  width: 100%;
   background: var(--white);
   border-radius: 1.6em;
   box-shadow: 0 8px 28px rgba(33,80,61,0.18), 0 2px 12px rgba(0,0,0,0.09);
@@ -204,7 +163,7 @@ body {
 .chatbot-header {
   background: var(--mint);
   padding: 1em 1.4em;
-  font-weight: bold;
+  font-weight: bold;  
   color: #2b594c;
   display: flex;
   align-items: center;
@@ -218,7 +177,7 @@ body {
   cursor: pointer;
 }
 .chatbot-messages {
-  height: 270px;
+  height: 80dvh;
   overflow-y: auto;
   background: var(--gray);
   padding: 1em;
@@ -238,7 +197,7 @@ body {
   box-shadow: 0 2px 12px rgba(33,80,61,0.07);
 }
 .chatbot-message.user {
-  background: var(--coral);
+  background: var(--grey);
   color: #fff;
   align-self: flex-end;
   border-radius: 1.2em 1.2em 0.4em 1.2em;
@@ -267,7 +226,6 @@ body {
   padding: 0.7em 1.5em;
   font-size: 1.08em;
   cursor: pointer;
-  transition: background 0.19s;
 }
 .chatbot-form button:hover,
 .chatbot-form button:focus {

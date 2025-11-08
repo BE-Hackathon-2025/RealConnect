@@ -47,19 +47,6 @@ function appendMessage(content, user = false) {
   document.getElementById('chatbot-messages').scrollTop = 99999;
 }
 
-// Open and close chatbot UI
-window.openChatbot = function () {
-  document.getElementById('chatbot-container').style.display = 'flex';
-  document.getElementById('chatbot-bubble').style.display = 'none';
-  setTimeout(() => {
-    document.getElementById('chatbot-input').focus();
-  }, 200);
-};
-window.closeChatbot = function () {
-  document.getElementById('chatbot-container').style.display = 'none';
-  document.getElementById('chatbot-bubble').style.display = 'flex';
-};
-
 // Basic interaction/submit handler
 window.handleChat = function (e) {
   e.preventDefault();

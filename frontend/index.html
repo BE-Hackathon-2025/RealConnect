@@ -24,7 +24,10 @@
     <div class="hero-content">
       <h1>Welcome to The Real Connect!</h1>
       <p>Your bright path to wellness, essentials, and community support.</p>
-      <button class="find-help-btn" onclick="scrollToResources()">Find Help</button>
+      <form id="chatbot-form" class="chatbot-form" onsubmit="handleChat(event)">
+        <input type="text" id="chatbot-input" placeholder="Ask for resources…" autocomplete="off" required>
+        <button type="submit">Send</button>
+      </form>
     </div>
     <div class="hero-graphic" aria-hidden="true">
       <!-- Can add SVG/Illustration here -->
@@ -57,29 +60,5 @@
   <footer class="footer">
     <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
   </footer>
-
-  <!-- Chatbot Widget -->
-  <div id="chatbot-bubble" class="chatbot-bubble" onclick="openChatbot()">
-    <span>💬</span>
-  </div>
-  <div id="chatbot-container" class="chatbot-container">
-    <div class="chatbot-header">
-      <span>RealConnect Bot</span>
-      <button aria-label="Close" onclick="closeChatbot()">×</button>
-    </div>
-    <div id="chatbot-messages" class="chatbot-messages"></div>
-    <form id="chatbot-form" class="chatbot-form" onsubmit="handleChat(event)">
-      <input type="text" id="chatbot-input" placeholder="Ask for resources…" autocomplete="off" required>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-
-  <script src="chatbot.js"></script>
-  <script>
-    // "Find Help" scrolls to resource section
-    function scrollToResources() {
-      document.getElementById('resources').scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
 </body>
 </html>

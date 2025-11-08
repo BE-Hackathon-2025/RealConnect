@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Real Connect – Find Wellness & Community Resources</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="navbar-logo">The Real Connect</div>
+            <ul class="navbar-links">
+                <li><a href="#wellness">Wellness</a></li>
+                <li><a href="#essentials">Essentials</a></li>
+                <li><a href="#work">Work & Growth</a></li>
+                <li><a href="#learn">Learn & Level Up</a></li>
+                <li><a href="communitywall.html">Community Wall</a></li>
+            </ul>
+        </nav>
+        <div id="chatbot-container" class="chatbot-container">
+            <div class="chatbot-header">
+                <span>RealConnect Bot</span>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages"></div>
+            <form id="chatbot-form" class="chatbot-form" onsubmit="handleChat(event)">
+            <input type="text" id="chatbot-input" placeholder="Ask for resources…" autocomplete="off" required>
+            <button type="submit">Send</button>
+            </form>
+        </div>
+        
+        <script src="chatbot.js"></script>
+    </body>
+</html>
