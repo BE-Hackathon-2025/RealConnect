@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Real Connect – Community Wall</title>
+
   <!-- Site-wide styles first, page-specific overrides second -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="community.css" />
 </head>
 <body class="page-community">
-  <!-- NAVBAR -->
+  <!-- NAVBAR (styled by styles.css) -->
   <nav class="navbar">
     <div class="navbar-logo">The Real Connect</div>
     <ul class="navbar-links">
@@ -42,7 +43,9 @@
       <button class="chip" data-filter="mutual" role="tab" aria-selected="false">Mutual Aid</button>
     </div>
     <div class="controls-right">
-      <button id="openSettings" class="ghost-btn" type="button">Private Name</button>
+      <button id="openSettings" class="ghost-btn" type="button" aria-haspopup="dialog" aria-controls="settingsModal">
+        Private Name
+      </button>
     </div>
   </section>
 
@@ -62,6 +65,16 @@
         </label>
 
         <label class="stack">
+          <span class="label">Your name</span>
+          <input id="postName" type="text" maxlength="40" placeholder="Enter your name" required>
+        </label>
+
+        <label class="row">
+          <input id="usePrivateName" type="checkbox" />
+          <span>Use my saved private name instead</span>
+        </label>
+
+        <label class="stack">
           <span class="label">Your message</span>
           <textarea id="postText" rows="4" maxlength="800" placeholder="Keep it kind, useful, and specific…" required></textarea>
           <div class="hint"><span id="charCount">0</span>/800</div>
@@ -72,12 +85,7 @@
           <input id="postLink" type="url" inputmode="url" placeholder="https://example.com">
         </label>
 
-        <label class="row">
-          <input id="usePrivateName" type="checkbox">
-          <span>Use my private name publicly on this post</span>
-        </label>
-
-        <button class="primary" type="submit">Post to Wall</button>
+        <button class="primary" id="postBtn" type="submit" disabled>Post to Wall</button>
         <p class="small muted">Your private name is stored only on your device unless you choose to display it.</p>
       </form>
     </aside>
