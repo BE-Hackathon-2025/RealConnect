@@ -91,7 +91,7 @@ window.handleChat = async function (e) {
   catch (err){
     console.error(err);
 
-    appendMessage(err.message + "\nFallback: " + fallback, "bot");  
+    appendMessage(err.message, "bot");  
   }
   finally{
     subBtn.disabled = false;
