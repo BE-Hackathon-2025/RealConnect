@@ -5,41 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Real Connect – Work & Growth</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{
+      --mint:#50C5B7;
+      --royal:#0463B9;
+      --sun:#FDF445;
+      --paper:#ffffff;
+      --ink:#0f172a;
+    }
+
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,sans-serif;
+      background:linear-gradient(135deg,var(--mint),var(--sun));
+      color:var(--ink);
+    }
+
+    /* NAVBAR */
+    .navbar{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 24px;background:var(--paper);border-bottom:3px solid var(--royal);
+    }
+    .navbar-logo{font-weight:900;color:var(--royal)}
+    .navbar-links{list-style:none;display:flex;gap:20px;margin:0;padding:0}
+    .navbar-links a{text-decoration:none;font-weight:600;color:var(--ink)}
+    .navbar-links a.active{color:var(--royal)}
+
+    /* HERO */
+    .page-hero{text-align:center;padding:60px 20px 30px}
+    .page-hero h1{font-size:2rem;color:var(--royal);margin:0 0 10px}
+    .page-hero p{font-size:1.1rem;max-width:760px;margin:0 auto 10px}
+    .back-home-btn{display:inline-block;margin-top:10px;color:var(--royal);font-weight:600;text-decoration:none}
+
+    /* CARDS */
+    .page-main{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:24px;
+      padding:30px 20px 80px;
+    }
+    .resource-card{
+      background:var(--paper);border-radius:16px;width:280px;padding:20px;text-align:left;
+      box-shadow:0 6px 16px rgba(4,99,185,.15);cursor:pointer;
+      transition:transform .2s,box-shadow .3s;
+    }
+    .resource-card:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(4,99,185,.25)}
+    .resource-card h3{color:var(--royal);margin:0 0 8px}
+
+    /* SLIDE PANEL */
+    .slide-panel{
+      position:fixed;top:0;right:-100%;width:400px;max-width:90%;height:100%;
+      background:linear-gradient(135deg,var(--mint),var(--sun));
+      border-left:3px solid var(--royal);box-shadow:-8px 0 20px rgba(0,0,0,.25);
+      transition:right .4s ease;z-index:999;display:flex;flex-direction:column;color:var(--ink);
+    }
+    .slide-panel.open{right:0}
+    .panel-close{
+      align-self:flex-end;margin:18px 20px;background:none;border:none;font-size:28px;font-weight:700;
+      color:var(--royal);cursor:pointer;
+    }
+    .panel-content{padding:0 24px 40px;overflow-y:auto}
+    .panel-content h2{color:var(--royal);margin:0 0 10px}
+    .panel-text ul{padding-left:20px;margin-top:8px}
+    .panel-text a{color:var(--royal);text-decoration:underline}
+
+    /* FOOTER */
+    .footer{text-align:center;padding:30px;background:var(--sun);font-weight:600}
+
+    @media (max-width:768px){
+      .page-main{flex-direction:column;align-items:center}
+    }
+  </style>
 </head>
 <body>
+  <!-- NAV -->
   <nav class="navbar">
     <div class="navbar-logo">The Real Connect</div>
     <ul class="navbar-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="wellness.html">Wellness</a></li>
       <li><a href="essentials.html">Essentials</a></li>
-      <li><a href="work.html">Work & Growth</a></li>
+      <li><a href="work.html" class="active">Work & Growth</a></li>
       <li><a href="legal.html">Legal & Rights</a></li>
       <li><a href="learn.html">Learn & Level Up</a></li>
       <li><a href="community.html">Community Wall</a></li>
     </ul>
   </nav>
+
+  <!-- HERO -->
   <section class="page-hero">
     <h1>Work & Growth</h1>
-    <p>Discover jobs, internships, career guidance, and personal development opportunities.</p>
-    <a href="index.html" class="back-home-btn">← Back to Home</a>
+    <p>Discover jobs, internships, apprenticeships, coaching, and skill-building to power your career.</p>
+    <a class="back-home-btn" href="index.html">← Back to Home</a>
   </section>
+
+  <!-- CARDS -->
   <main class="page-main">
-    <div class="resource-card">
+    <div class="resource-card" data-panel="jobs">
       <h3>Jobs & Internships</h3>
-      <p>Explore job openings, paid internships, and temp work programs.</p>
+      <p>Explore openings, paid internships, and temp work programs.</p>
     </div>
-    <div class="resource-card">
+
+    <div class="resource-card" data-panel="apprentice">
+      <h3>Apprenticeships & Trades</h3>
+      <p>Earn while you learn in tech, construction, healthcare, and more.</p>
+    </div>
+
+    <div class="resource-card" data-panel="coaching">
       <h3>Career Coaching</h3>
-      <p>Access resume workshops, mock interviews, and career counseling.</p>
+      <p>Resume reviews, mock interviews, and 1:1 guidance.</p>
     </div>
-    <div class="resource-card">
-      <h3>Personal Development</h3>
-      <p>Join skill-building seminars and mentorship networks.</p>
+
+    <div class="resource-card" data-panel="guides">
+      <h3>Résumé, Taxes & Workplace</h3>
+      <p>Templates, tax basics, and know-your-rights on the job.</p>
     </div>
   </main>
+
+  <!-- SLIDE-OUT PANEL -->
+  <aside class="slide-panel" id="slidePanel">
+    <button class="panel-close" id="panelClose" aria-label="Close">&times;</button>
+    <div class="panel-content" id="panelContent"></div>
+  </aside>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
+    <span>© 2025 The Real Connect. Wellness & Community for all.</span>
   </footer>
+
+  <script>
+    const panelData = {
+      jobs: {
+        title: "Jobs & Internships",
+        text: `
+          Find work that fits your life and goals.
+          <ul>
+            <li><a href="https://jobs.google.com/" target="_blank">Google Jobs</a> – search across sites.</li>
+            <li><a href="https://www.indeed.com/" target="_blank">Indeed</a> – set alerts for your city.</li>
+            <li><a href="https://www.internships.com/" target="_blank">Internships.com</a> – paid & remote roles.</li>
+          </ul>
+        `
+      },
+      apprentice: {
+        title: "Apprenticeships & Trades",
+        text: `
+          Earn while you learn with hands-on training.
+          <ul>
+            <li><a href="https://www.apprenticeship.gov/" target="_blank">apprenticeship.gov</a> – official listings.</li>
+            <li>Explore union programs (electrician, plumbing, carpentry).</li>
+            <li>Tech bootcamps with stipends/scholarships in your area.</li>
+          </ul>
+        `
+      },
+      coaching: {
+        title: "Career Coaching",
+        text: `
+          Get feedback and confidence before you apply.
+          <ul>
+            <li>Free resume reviews at local libraries & workforce centers.</li>
+            <li>Mock interviews via community colleges and nonprofits.</li>
+            <li>LinkedIn profile tune-ups & networking scripts.</li>
+          </ul>
+        `
+      },
+      guides: {
+        title: "Résumé, Taxes & Workplace",
+        text: `
+          Know the basics and protect yourself at work.
+          <ul>
+            <li>ATS-friendly résumé & cover letter templates (Google Docs).</li>
+            <li>Tax starter kit: W-4, paystubs, 1099 vs W-2, filing basics.</li>
+            <li>Workplace rights: overtime, harassment, retaliation, breaks.</li>
+          </ul>
+        `
+      }
+    };
+
+    const cards = document.querySelectorAll('.resource-card[data-panel]');
+    const panel = document.getElementById('slidePanel');
+    const panelContent = document.getElementById('panelContent');
+    const panelClose = document.getElementById('panelClose');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-panel');
+        const data = panelData[key];
+        if (!data) return;
+        panelContent.innerHTML = `
+          <h2>${data.title}</h2>
+          <div class="panel-text">${data.text}</div>
+        `;
+        panel.classList.add('open');
+      });
+    });
+
+    const closePanel = () => panel.classList.remove('open');
+    panelClose.addEventListener('click', closePanel);
+    panel.addEventListener('click', e => { if (e.target === panel) closePanel(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+  </script>
 </body>
 </html>
