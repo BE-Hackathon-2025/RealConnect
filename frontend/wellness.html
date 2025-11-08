@@ -4,9 +4,174 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Real Connect – Wellness</title>
-  <!-- Uses our global styles (gradient, navbar, cards, panel, etc.) -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --mint: #50C5B7;
+      --royal: #0463B9;
+      --sun: #FDF445;
+      --paper: #ffffff;
+      --ink: #0f172a;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, var(--mint), var(--sun));
+      color: var(--ink);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: var(--paper);
+      border-bottom: 3px solid var(--royal);
+    }
+    .navbar-logo {
+      font-weight: 900;
+      color: var(--royal);
+    }
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .navbar-links a.active {
+      color: var(--royal);
+    }
+
+    /* HERO SECTION */
+    .page-hero {
+      text-align: center;
+      padding: 60px 20px 30px;
+      color: var(--ink);
+    }
+    .page-hero h1 {
+      font-size: 2rem;
+      color: var(--royal);
+      margin-bottom: 10px;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 10px;
+    }
+    .back-home-btn {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--royal);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* RESOURCE CARDS */
+    .page-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      padding: 30px 20px 80px;
+    }
+
+    .resource-card {
+      background: var(--paper);
+      border-radius: 16px;
+      width: 280px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0 6px 16px rgba(4, 99, 185, 0.15);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 24px rgba(4, 99, 185, 0.25);
+    }
+    .resource-card h3 {
+      color: var(--royal);
+      margin-top: 0;
+    }
+
+    /* SLIDE-OUT PANEL */
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 380px;
+      max-width: 90%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--mint), var(--sun));
+      box-shadow: -8px 0 20px rgba(0,0,0,0.25);
+      transition: right 0.4s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      color: var(--ink);
+      border-left: 3px solid var(--royal);
+    }
+
+    .slide-panel.open {
+      right: 0;
+    }
+
+    .panel-close {
+      align-self: flex-end;
+      margin: 20px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--royal);
+    }
+
+    .panel-content {
+      padding: 0 25px 40px;
+      overflow-y: auto;
+    }
+
+    .panel-content h2 {
+      color: var(--royal);
+      font-size: 1.6rem;
+    }
+
+    .panel-text ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    .panel-text a {
+      color: var(--royal);
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--sun);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page-main {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -22,32 +187,30 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="page-hero">
     <h1>Wellness Resources</h1>
     <p>Explore mental health, counseling, fitness, self-care, and support resources curated for you.</p>
     <a href="index.html" class="back-home-btn">← Back to Home</a>
   </section>
 
-  <!-- CARDS (row) -->
+  <!-- RESOURCE CARDS -->
   <main class="page-main">
     <div class="resource-card" data-panel="mental">
       <h3>Mental Health Support</h3>
       <p>Find therapists, counseling hotlines, crisis support, and peer circles.</p>
     </div>
-
     <div class="resource-card" data-panel="fitness">
       <h3>Fitness Activities</h3>
       <p>Search for local gyms, free virtual fitness classes, and walk groups.</p>
     </div>
-
     <div class="resource-card" data-panel="events">
       <h3>Wellness Events</h3>
       <p>Join mindfulness workshops, meditation sessions, and wellness activities near you.</p>
     </div>
   </main>
 
-  <!-- SLIDE-OUT PANEL (same component used on other pages) -->
+  <!-- SLIDE-OUT PANEL -->
   <aside class="slide-panel" id="slidePanel" aria-hidden="true">
     <button class="panel-close" id="panelClose" aria-label="Close panel">&times;</button>
     <div class="panel-content" id="panelContent"></div>
@@ -58,9 +221,8 @@
     <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
   </footer>
 
-  <!-- PAGE SCRIPT (self-contained) -->
+  <!-- PAGE SCRIPT -->
   <script>
-    // Content for the slide panel
     const panelData = {
       mental: {
         title: "Mental Health Support",
@@ -79,10 +241,10 @@
         html: `
           <p>Move your body and boost your mood with local and virtual options.</p>
           <ul>
-            <li>Search & try free classes on YouTube (yoga, HIIT, mobility).</li>
+            <li>Try free classes on YouTube (yoga, HIIT, mobility).</li>
             <li><a href="https://www.ymca.org/find-your-y" target="_blank" rel="noopener">Local YMCA</a> – community gyms & programs</li>
             <li><a href="https://www.meetup.com/find/?keywords=walking%20group" target="_blank" rel="noopener">Walking groups on Meetup</a></li>
-            <li>Track progress with a simple weekly routine: M/W/F (strength) + T/Th (cardio).</li>
+            <li>Follow a simple weekly routine: M/W/F (strength) + T/Th (cardio).</li>
           </ul>
         `
       },
@@ -99,40 +261,35 @@
       }
     };
 
-    const cards       = document.querySelectorAll('.resource-card[data-panel]');
-    const panel       = document.getElementById('slidePanel');
-    const panelClose  = document.getElementById('panelClose');
-    const panelContent= document.getElementById('panelContent');
+    const cards = document.querySelectorAll(".resource-card[data-panel]");
+    const panel = document.getElementById("slidePanel");
+    const panelClose = document.getElementById("panelClose");
+    const panelContent = document.getElementById("panelContent");
 
     function openPanel(key) {
       const data = panelData[key];
       if (!data) return;
-      panelContent.innerHTML = `
-        <h2>${data.title}</h2>
-        <div class="panel-text">${data.html}</div>
-      `;
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('panel-active');
+      panelContent.innerHTML = `<h2>${data.title}</h2><div class="panel-text">${data.html}</div>`;
+      panel.classList.add("open");
+      panel.setAttribute("aria-hidden", "false");
+      document.body.classList.add("panel-active");
     }
 
     function closePanel() {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('panel-active');
+      panel.classList.remove("open");
+      panel.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("panel-active");
     }
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        openPanel(card.getAttribute('data-panel'));
-      });
+    cards.forEach((card) => {
+      card.addEventListener("click", () => openPanel(card.getAttribute("data-panel")));
     });
-    panelClose.addEventListener('click', closePanel);
-    panel.addEventListener('click', (e) => {
+    panelClose.addEventListener("click", closePanel);
+    panel.addEventListener("click", (e) => {
       if (e.target === panel) closePanel();
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePanel();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closePanel();
     });
   </script>
 </body>
