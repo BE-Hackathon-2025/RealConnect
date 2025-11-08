@@ -16,7 +16,7 @@
 
     body{
       margin:0;
-      font-family:"Poppins",system-ui,sans-serif;
+      font-family:"Poppins", system-ui, sans-serif;
       background:linear-gradient(135deg,var(--mint),var(--sun));
       color:var(--ink);
     }
@@ -40,7 +40,7 @@
     /* CARDS */
     .page-main{
       display:flex;flex-wrap:wrap;justify-content:center;gap:24px;
-      padding:30px 20px 80px;
+      padding:30px 20px 32px;
     }
     .resource-card{
       background:var(--paper);border-radius:16px;width:280px;padding:20px;text-align:left;
@@ -50,9 +50,23 @@
     .resource-card:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(4,99,185,.25)}
     .resource-card h3{color:var(--royal);margin:0 0 8px}
 
+    /* POWER MOVES SECTION */
+    .power{
+      max-width:1000px;margin:8px auto 48px;padding:0 20px;
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+    }
+    .power .card{
+      background:var(--paper);border-radius:16px;padding:18px 18px 16px;
+      box-shadow:0 6px 16px rgba(4,99,185,.12);
+      cursor:pointer; transition:transform .2s, box-shadow .3s;
+    }
+    .power .card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(4,99,185,.18)}
+    .power h3{margin:0 0 6px;color:var(--royal)}
+    .power p{margin:0}
+
     /* SLIDE PANEL */
     .slide-panel{
-      position:fixed;top:0;right:-100%;width:400px;max-width:90%;height:100%;
+      position:fixed;top:0;right:-100%;width:420px;max-width:92%;height:100%;
       background:linear-gradient(135deg,var(--mint),var(--sun));
       border-left:3px solid var(--royal);box-shadow:-8px 0 20px rgba(0,0,0,.25);
       transition:right .4s ease;z-index:999;display:flex;flex-direction:column;color:var(--ink);
@@ -64,12 +78,17 @@
     }
     .panel-content{padding:0 24px 40px;overflow-y:auto}
     .panel-content h2{color:var(--royal);margin:0 0 10px}
+    .panel-intro{margin:6px 0 6px}
     .panel-text ul{padding-left:20px;margin-top:8px}
-    .panel-text a{color:var(--royal);text-decoration:underline}
+    .panel-text a{color:var(--royal);text-decoration:underline;word-break:break-word}
+    .panel-text p{margin:10px 0 12px;line-height:1.48}
 
     /* FOOTER */
     .footer{text-align:center;padding:30px;background:var(--sun);font-weight:600}
 
+    @media (max-width:992px){
+      .power{grid-template-columns:1fr}
+    }
     @media (max-width:768px){
       .page-main{flex-direction:column;align-items:center}
     }
@@ -111,7 +130,7 @@
 
     <div class="resource-card" data-panel="coaching">
       <h3>Career Coaching</h3>
-      <p>Resume reviews, mock interviews, and 1:1 guidance.</p>
+      <p>Résumé reviews, mock interviews, and 1:1 guidance.</p>
     </div>
 
     <div class="resource-card" data-panel="guides">
@@ -120,8 +139,24 @@
     </div>
   </main>
 
+  <!-- GEN-Z POWER MOVES (now clickable) -->
+  <section class="power">
+    <article class="card" data-panel="powerMoves">
+      <h3>Power Moves ⚡</h3>
+      <p><strong>Build-in-public:</strong> weekly wins, drafts, or mini-demos. Pin a Notion/Drive link as your living portfolio.</p>
+    </article>
+    <article class="card" data-panel="networkScripts">
+      <h3>Network Scripts 🗣️</h3>
+      <p>DMs and emails you can copy-paste. Clear, short, confident.</p>
+    </article>
+    <article class="card" data-panel="fastLanes">
+      <h3>Fast Lanes 🚀</h3>
+      <p>Micro-internships, hackathons, and certs—plus cold-outreach that gets replies.</p>
+    </article>
+  </section>
+
   <!-- SLIDE-OUT PANEL -->
-  <aside class="slide-panel" id="slidePanel">
+  <aside class="slide-panel" id="slidePanel" aria-hidden="true">
     <button class="panel-close" id="panelClose" aria-label="Close">&times;</button>
     <div class="panel-content" id="panelContent"></div>
   </aside>
@@ -132,72 +167,238 @@
   </footer>
 
   <script>
+    // helper
+    const li = (href, label) => `<li><a href="${href}" target="_blank" rel="noopener">${label}</a></li>`;
+
     const panelData = {
+      /* ---------- RESOURCE PANELS (20+ each where required) ---------- */
       jobs: {
         title: "Jobs & Internships",
-        text: `
-          Find work that fits your life and goals.
-          <ul>
-            <li><a href="https://jobs.google.com/" target="_blank">Google Jobs</a> – search across sites.</li>
-            <li><a href="https://www.indeed.com/" target="_blank">Indeed</a> – set alerts for your city.</li>
-            <li><a href="https://www.internships.com/" target="_blank">Internships.com</a> – paid & remote roles.</li>
-          </ul>
-        `
+        intro: "Find roles, paid internships, and short-term work with alerts and searchable boards.",
+        items: [
+          li("https://www.indeed.com/","Indeed"),
+          li("https://www.linkedin.com/jobs/","LinkedIn Jobs"),
+          li("https://www.google.com/search?q=jobs","Google Jobs Search"),
+          li("https://www.usajobs.gov/","USAJOBS (Federal)"),
+          li("https://joinhandshake.com/","Handshake (campus)"),
+          li("https://wellfound.com/","Wellfound (startups)"),
+          li("https://builtin.com/jobs","Built In (tech hubs)"),
+          li("https://remoteok.com/","Remote OK"),
+          li("https://weworkremotely.com/","We Work Remotely"),
+          li("https://www.flexjobs.com/","FlexJobs"),
+          li("https://www.glassdoor.com/Job/index.htm","Glassdoor"),
+          li("https://www.levels.fyi/internships/","Levels.fyi Internships"),
+          li("https://parkerdewey.com/","Parker Dewey (micro-internships)"),
+          li("https://ripplematch.com/","RippleMatch"),
+          li("https://theforage.com/","Forage (virtual experience)"),
+          li("https://www.internships.com/","Chegg Internships"),
+          li("https://careers.google.com/students/","Google Students"),
+          li("https://www.microsoft.com/en-us/careers/students-and-graduates","Microsoft Students"),
+          li("https://www.amazon.jobs/en/teams/internships-for-students","Amazon Student Programs"),
+          li("https://careers.apple.com/en-us/students","Apple Students"),
+          li("https://boards.greenhouse.io/","Greenhouse company boards"),
+          li("https://jobs.lever.co/","Lever company boards")
+        ]
       },
+
       apprentice: {
         title: "Apprenticeships & Trades",
-        text: `
-          Earn while you learn with hands-on training.
-          <ul>
-            <li><a href="https://www.apprenticeship.gov/" target="_blank">apprenticeship.gov</a> – official listings.</li>
-            <li>Explore union programs (electrician, plumbing, carpentry).</li>
-            <li>Tech bootcamps with stipends/scholarships in your area.</li>
-          </ul>
-        `
+        intro: "Earn while you learn—union trades, tech apprenticeships, healthcare, and more.",
+        items: [
+          li("https://www.apprenticeship.gov/","Apprenticeship.gov"),
+          li("https://www.dol.gov/agencies/eta/apprenticeship","U.S. DOL Apprenticeship"),
+          li("https://www.jobcorps.gov/","Job Corps (16–24)"),
+          li("https://www.yearup.org/","Year Up"),
+          li("https://www.perscholas.org/","Per Scholas (IT)"),
+          li("https://www.npower.org/","NPower (IT)"),
+          li("https://www.multiverse.io/en-US","Multiverse Apprenticeships"),
+          li("https://www.ibm.com/careers/us-en/early-career/apprenticeship/","IBM Apprenticeship"),
+          li("https://learn.microsoft.com/en-us/leap/","Microsoft Leap"),
+          li("https://buildyourfuture.org/","Build Your Future (construction)"),
+          li("https://www.ibew.org/","IBEW Electrician"),
+          li("https://ua.org/","UA Plumbers & Pipefitters"),
+          li("https://www.carpenters.org/","Carpenters"),
+          li("https://www.smart-union.org/","SMART Sheet Metal"),
+          li("https://www.iuoe.org/","Operating Engineers"),
+          li("https://www.seiu.org/","SEIU training pathways"),
+          li("https://www.aamn.org/education/healthcare-apprenticeships","Healthcare apprenticeships"),
+          li("https://careers.google.com/apprenticeships/","Google Apprenticeships"),
+          li("https://www.amazon.jobs/en/teams/mechatronics-and-robotics","Amazon Mechatronics/Robotics"),
+          li("https://www.acceleratewithgoogle.com/certificates","Google Career Cert pathways")
+        ]
       },
+
       coaching: {
         title: "Career Coaching",
-        text: `
-          Get feedback and confidence before you apply.
-          <ul>
-            <li>Free resume reviews at local libraries & workforce centers.</li>
-            <li>Mock interviews via community colleges and nonprofits.</li>
-            <li>LinkedIn profile tune-ups & networking scripts.</li>
-          </ul>
-        `
+        intro: "Get feedback fast—résumé reviews, mock interviews, mentors, and profile tune-ups.",
+        items: [
+          li("https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx","American Job Centers (free)"),
+          li("https://www.sba.gov/local-assistance/resource-partners/score-mentors","SCORE Mentors"),
+          li("https://americasbdc.org/sbdc-locator/","Small Business Development Centers"),
+          li("https://adplist.org/","ADPList (free mentors)"),
+          li("https://www.pathrise.com/","Pathrise"),
+          li("https://www.springboard.com/","Springboard"),
+          li("https://www.coursera.org/grow-with-google","Grow with Google"),
+          li("https://www.linkedin.com/learning/","LinkedIn Learning"),
+          li("https://www.pramp.com/","Pramp (mock interviews)"),
+          li("https://interviewing.io/","interviewing.io"),
+          li("https://www.exponent.com/","Exponent"),
+          li("https://www.resume-worded.com/","Resume Worded"),
+          li("https://www.rezi.ai/","Rezi ATS Résumé"),
+          li("https://www.tealhq.com/","Teal"),
+          li("https://standardresume.co/","Standard Resume"),
+          li("https://www.jobscan.co/","Jobscan"),
+          li("https://www.vmock.com/","VMock"),
+          li("https://grow.google/interview-warmup/","Google Interview Warmup"),
+          li("https://www.youtube.com/@indeed","Indeed Career Guide (YT)"),
+          li("https://www.youtube.com/@HarvardOCS","Harvard OCS Career (YT)")
+        ]
       },
+
       guides: {
         title: "Résumé, Taxes & Workplace",
-        text: `
-          Know the basics and protect yourself at work.
-          <ul>
-            <li>ATS-friendly résumé & cover letter templates (Google Docs).</li>
-            <li>Tax starter kit: W-4, paystubs, 1099 vs W-2, filing basics.</li>
-            <li>Workplace rights: overtime, harassment, retaliation, breaks.</li>
-          </ul>
+        intro: "Templates, taxes, pay, rights—plus quick video explainers.",
+        items: [
+          li("https://docs.google.com/document/u/0/","Google Docs Templates"),
+          li("https://www.canva.com/templates/resumes/","Canva Résumé Templates"),
+          li("https://www.overleaf.com/latex/templates/tagged/cv","Overleaf CV Templates"),
+          li("https://www.levels.fyi/","Levels.fyi (comp bands)"),
+          li("https://www.glassdoor.com/Salaries/index.htm","Glassdoor Salaries"),
+          li("https://www.payscale.com/","Payscale"),
+          li("https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers","IRS VITA (free tax prep)"),
+          li("https://www.irs.gov/filing/free-file-do-your-federal-taxes-for-free","IRS Free File"),
+          li("https://www.irs.gov/individuals/irs-withholding-calculator","IRS Withholding Estimator"),
+          li("https://www.consumerfinance.gov/consumer-tools/workplace/","CFPB: paycheck basics"),
+          li("https://www.dol.gov/agencies/whd","Wage & Hour (DOL)"),
+          li("https://www.eeoc.gov/","EEOC (discrimination)"),
+          li("https://www.osha.gov/","OSHA (safety)"),
+          li("https://www.nlrb.gov/","NLRB (collective rights)"),
+          li("https://www.youtube.com/watch?v=K0i6FqPzK2A","STAR Method — explainer"),
+          li("https://www.youtube.com/watch?v=RSaIOCHbuYw","Answer: Tell me about yourself"),
+          li("https://www.youtube.com/watch?v=Jv6R_1WcQvU","ATS résumé tips"),
+          li("https://www.khanacademy.org/college-careers-more/career-content","Khan Academy Careers"),
+          li("https://www.doi.gov/ocr/whistleblower-protection","Whistleblower basics"),
+          li("https://oag.ca.gov/workplace-privacy/tips","Workplace privacy tips")
+        ]
+      },
+
+      /* ---------- POWER MOVES POP-UPS (5 paragraphs each) ---------- */
+      powerMoves: {
+        title: "Power Moves ⚡",
+        intro: "Templates to post with confidence and turn momentum into receipts.",
+        html: `
+          <p><strong>1) Weekly “Build-in-Public” Post</strong><br>
+          “Week <em>[#]</em> of <em>[project]</em>: shipped <em>[feature 1]</em>, learned <em>[thing]</em>, blocked by <em>[issue]</em> (fix plan below). Demo: <em>[link]</em>. 
+          Next week: <em>[goal 1]</em> + <em>[goal 2]</em>. If you’ve solved <em>[issue]</em> before, my DMs are open 🤝.”</p>
+
+          <p><strong>2) Portfolio “Changelog” Caption</strong><br>
+          “New push → <em>[project]</em> v<em>[x.y]</em>. Now loads in <em>[time]</em>, added <em>[feature]</em>, fixed <em>[bug]</em>. 
+          Repo/Case study: <em>[link]</em>. Feedback welcome. I iterate fast.”</p>
+
+          <p><strong>3) Ask for Signal, Not Favors</strong><br>
+          “Trying to validate <em>[idea]</em> for <em>[audience]</em>. 2-question poll: <em>[link]</em>. 
+          Would this save you time? What would make it a ‘must have’?”</p>
+
+          <p><strong>4) Win Thread (Quant)</strong><br>
+          “Past 30 days: submitted <em>[#]</em> apps, booked <em>[#]</em> calls, shipped <em>[#]</em> demos, reached <em>[metric]</em>. 
+          Next: targeting <em>[companies]</em>. If you hire for <em>[role]</em>, I’ll send a 90-second demo tailored to you.”</p>
+
+          <p><strong>5) Brag Doc (pin this)</strong><br>
+          “Living portfolio → <em>[Notion/Drive link]</em>. One-liners, screenshots, and metrics. Updated weekly.”</p>
+        `
+      },
+
+      networkScripts: {
+        title: "Network Scripts 🗣️",
+        intro: "Copy-paste outreach that feels human, short, and easy to say.",
+        html: `
+          <p><strong>1) 9-Minute Coffee DM</strong><br>
+          “Hey <em>[Name]</em> — love your path at <em>[Company]</em>. I’m a student building <em>[1-line project]</em>. 
+          Could I ask 2 questions about your role? Promise <strong>9 minutes</strong>. If yes, what’s a good time next week?”</p>
+
+          <p><strong>2) Role-Targeted “I’ll send demo”</strong><br>
+          “Hi <em>[Recruiter/Manager]</em> — I’m targeting <em>[role]</em> with <em>[skill]</em> depth. 
+          Give me one challenge your team has; I’ll ship a 90-second Loom showing how I’d tackle it. Deal?”</p>
+
+          <p><strong>3) Informational Interview Opener</strong><br>
+          “What surprised you most moving into <em>[role]</em>? And what would you repeat 100%? I’m mapping my next 6 months.”</p>
+
+          <p><strong>4) Thank-You (same day)</strong><br>
+          “Thank you for your time today! I heard <em>[insight]</em> and will apply it by <em>[action]</em>. 
+          Here’s the mini-artifact we discussed: <em>[link]</em>. Cheering on your team.”</p>
+
+          <p><strong>5) Referral Request (soft)</strong><br>
+          “If it’s a fit, I’d appreciate a referral for <em>[req #]</em>. 
+          Context + résumé here <em>[link]</em>. No worries if not — your advice already helped.”</p>
+        `
+      },
+
+      fastLanes: {
+        title: "Fast Lanes 🚀",
+        intro: "Short paths to signal — plus scripts for cold outreach and hackathons.",
+        html: `
+          <p><strong>1) Micro-Internship Pitch</strong><br>
+          “I can deliver <em>[result]</em> in <em>[10–20]</em> hours next week for <em>[org]</em>. 
+          Scope: <em>[3 bullets]</em>. If you like the draft, keep me on for phase 2.”</p>
+
+          <p><strong>2) Hackathon Team Intro</strong><br>
+          “I’m <em>[Name]</em> (<em>[skill]</em> + <em>[skill]</em>). I prototype fast and handle demo storytelling. 
+          Looking for <em>[roles]</em>. Idea seed: <em>[1-liner]</em>. Let’s ship.”</p>
+
+          <p><strong>3) Cert + Project Plan (2 weeks)</strong><br>
+          “Week 1: finish <em>[certificate module]</em> + clone <em>[app]</em>. Week 2: add <em>[feature]</em>, deploy, measure <em>[metric]</em>. 
+          Public log here: <em>[link]</em>.”</p>
+
+          <p><strong>4) Volunteer-to-Hire Email</strong><br>
+          “Spotted <em>[nonprofit/local biz]</em> could use <em>[skill]</em>. I’ll build <em>[tiny deliverable]</em> free this week; 
+          if it helps, we can talk ongoing support.”</p>
+
+          <p><strong>5) One-Slide Pitch Template</strong><br>
+          Problem → Who hurts → Tiny demo GIF → 3 metrics after a week → CTA: “Book a 10-min try-out.” 
+          Keep the slide at 40 words max.</p>
         `
       }
     };
 
-    const cards = document.querySelectorAll('.resource-card[data-panel]');
+    /* ---------- Panel Wiring ---------- */
     const panel = document.getElementById('slidePanel');
-    const panelContent = document.getElementById('panelContent');
     const panelClose = document.getElementById('panelClose');
+    const panelContent = document.getElementById('panelContent');
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.getAttribute('data-panel');
-        const data = panelData[key];
-        if (!data) return;
-        panelContent.innerHTML = `
-          <h2>${data.title}</h2>
-          <div class="panel-text">${data.text}</div>
-        `;
-        panel.classList.add('open');
-      });
+    function openResourcePanel(key){
+      const data = panelData[key];
+      if(!data) return;
+
+      // If the entry has a list (items), render list; if it has custom HTML, render that.
+      let bodyHTML = "";
+      if (data.items) {
+        const list = data.items.join("");
+        bodyHTML = `<p class="panel-intro">${data.intro ?? ""}</p><div class="panel-text"><ul>${list}</ul></div>`;
+      } else if (data.html) {
+        bodyHTML = `<p class="panel-intro">${data.intro ?? ""}</p><div class="panel-text">${data.html}</div>`;
+      }
+
+      panelContent.innerHTML = `<h2>${data.title}</h2>${bodyHTML}`;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden','false');
+      document.body.classList.add('panel-active');
+    }
+
+    function closePanel(){
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden','true');
+      document.body.classList.remove('panel-active');
+    }
+
+    // Main resource cards
+    document.querySelectorAll('.resource-card[data-panel]').forEach(card=>{
+      card.addEventListener('click',()=>openResourcePanel(card.getAttribute('data-panel')));
+    });
+    // Power cards
+    document.querySelectorAll('.power [data-panel]').forEach(card=>{
+      card.addEventListener('click',()=>openResourcePanel(card.getAttribute('data-panel')));
     });
 
-    const closePanel = () => panel.classList.remove('open');
     panelClose.addEventListener('click', closePanel);
     panel.addEventListener('click', e => { if (e.target === panel) closePanel(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
