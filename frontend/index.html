@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Real Connect – Find Wellness & Community Resources</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Mission box styling */
+    .hero-mission {
+      width: 460px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 6px 16px rgba(4,99,185,0.12);
+      color: #0f172a;
+      line-height: 1.55;
+      margin-top: 30px;
+      margin-left: 41%; /* Centers it under Work & Growth */
+    }
+
+    .hero-mission strong {
+      color: #0463B9;
+    }
+
+    @media (max-width: 900px) {
+      .hero-mission {
+        width: 90%;
+        margin: 20px auto;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -31,13 +57,21 @@
         <button id="chatbot-submit" type="submit">Send</button>
       </form>
     </div>
+
     <div class="hero-graphic" aria-hidden="true">
-      <!-- Can add SVG/Illustration here -->
+      <div class="hero-mission">
+        <p style="margin:0;">
+          <strong>Why we built this:</strong> We grew up opening ten tabs just to find one real answer. 
+          <em>The Real Connect</em> puts wellness, essentials, legal help, and growth in one place—built by students for Gen Z and the younger crews coming up. 
+          Not everyone has a mentor, a car, or hours to dig through the internet. This hub cuts the noise with verified links, plain-language guidance, and tools that respect your time and privacy. 
+          We didn’t have a resource like this, so we made one—free, community-powered, and always improving—so you can move faster, stress less, and help the next person do the same.
+        </p>
+      </div>
     </div>
   </header>
   <script src="chatbot.js"></script>
 
-  <!-- Example Resources Section (for Find Help scroll) -->
+  <!-- Example Resources Section -->
   <section id="resources" class="resources-section">
     <h2>Wellness, Essentials, Growth & More</h2>
     <div class="card-grid">
@@ -63,6 +97,5 @@
   <footer class="footer">
     <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
   </footer>
-
 </body>
 </html>
