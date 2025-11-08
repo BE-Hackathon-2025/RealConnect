@@ -23,19 +23,16 @@ Developing a cutting-edge software application that harnesses the power of artii
 
 
 ## Project Description 🤯
-A website that uses AI to direct people to connec
-
+The Real Connect puts wellness, essentials, legal help, and growth in one place, built by students for Gen Z and the younger crews coming up. Not everyone has a mentor, a car, or hours to dig through the internet. This hub cuts the noise with verified links, plain-language guidance, and tools that respect your time and privacy. Using Artificial Intelligence, it connects people to factual, verified resouces, to solve their problems. 
 
 ## Project Value 💰
-**....at least 3 sentences describing your target customer and tangible benefits from your solution**
-
+College Students, Workers, Parents, anyone who has an issue that needs to be solved. Using this, users can save critical hours of their day to instead go about their day, without stress or worries about their issue. The Real Connect can help people save at least 2 hours in the day, a number that seems small but slowly accumulates. Just 2 hours every day can accumulate into over 700 hours a year.
 ## Tech Overview 💻
-**... what tech was used to bring this project to life?**
-
+**HTML/CSS/JavaScript** Static Site served using an Express web server. Also ustilizes OpenAI's chat completions AI to serve as the chatbot agent, directing people to services not directly on the RealConnect platofrom. 
 
 
 ### Link to Demo Presentation 📽
-[Canva](https://www.canva.com/design/DAG4BsQXPII/nbCLyoegkphp4-dw-x0LTg/view?utm_content=DAG4BsQXPII&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8b0ff2427f)
+[Google Slides](https://docs.google.com/presentation/d/1is8z_xQLc1tuGuGaWIGdVCKS2gZhxAMvqsYHvajRB-g/edit?usp=sharing)
 
 ### Team Checklist ✅
 - ✅ Team photo
@@ -45,8 +42,8 @@ A website that uses AI to direct people to connec
 - ✅ Flight Deck registration
 
 ### Project Checklist 🏁
-- [ ] Presentation complete and linked
-- [ ] Code merged to main branch
+- ✅ Presentation complete and linked
+- ✅ Code merged to main branch
 
 ### School Name 🏫
 Simmons College of Kentucky
