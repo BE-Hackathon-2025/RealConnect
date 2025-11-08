@@ -40,7 +40,7 @@
     /* CARDS */
     .page-main{
       display:flex;flex-wrap:wrap;justify-content:center;gap:24px;
-      padding:30px 20px 80px;
+      padding:30px 20px 40px;
     }
     .resource-card{
       background:var(--paper);border-radius:16px;width:280px;padding:20px;text-align:left;
@@ -66,6 +66,26 @@
     .panel-content h2{color:var(--royal);margin:0 0 10px}
     .panel-text ul{padding-left:20px;margin-top:8px}
     .panel-text a{color:var(--royal);text-decoration:underline}
+
+    /* DISCLAIMER BLOCK */
+    .legal-disclaimer{
+      max-width:1000px;
+      margin:0 auto 24px;
+      padding:16px 20px;
+      background:rgba(255,255,255,.92);
+      border-radius:14px;
+      box-shadow:0 6px 16px rgba(4,99,185,.12);
+    }
+    .legal-disclaimer h3{
+      margin:0 0 8px;
+      color:var(--royal);
+      font-size:1.1rem;
+    }
+    .legal-disclaimer p{
+      margin:0;
+      font-size:.95rem;
+      line-height:1.5;
+    }
 
     /* FOOTER */
     .footer{text-align:center;padding:30px;background:var(--sun);font-weight:600}
@@ -120,8 +140,21 @@
     </div>
   </main>
 
+  <!-- DISCLAIMER (before footer) -->
+  <section class="legal-disclaimer" aria-label="Legal disclaimer">
+    <h3>Important: Information Only — Not Legal Advice</h3>
+    <p>
+      The resources on this page are provided for general information and community education. They are
+      not legal advice, do not create an attorney–client relationship, and may not reflect the most
+      current laws in your state. For guidance on your specific situation, contact a licensed attorney
+      or a legal aid organization. If you feel unsafe or are experiencing an emergency, call local
+      emergency services. By using these links, you agree you’re responsible for any decisions you make
+      based on this information.
+    </p>
+  </section>
+
   <!-- PANEL -->
-  <aside class="slide-panel" id="slidePanel">
+  <aside class="slide-panel" id="slidePanel" aria-hidden="true">
     <button class="panel-close" id="panelClose" aria-label="Close">&times;</button>
     <div class="panel-content" id="panelContent"></div>
   </aside>
@@ -138,7 +171,7 @@
         text:`
           Get free or low-cost legal help.
           <ul>
-            <li><a href="https://www.lsc.gov/what-legal-aid/find-legal-aid" target="_blank">Find Legal Aid (LSC)</a></li>
+            <li><a href="https://www.lsc.gov/what-legal-aid/find-legal-aid" target="_blank" rel="noopener">Find Legal Aid (LSC)</a></li>
             <li>Local law school clinics often take community cases.</li>
             <li>Ask your city’s bar association for pro bono referrals.</li>
           </ul>
@@ -184,20 +217,22 @@
     const panelContent = document.getElementById('panelContent');
     const panelClose = document.getElementById('panelClose');
 
-    cards.forEach(card=>{
-      card.addEventListener('click',()=>{
-        const key = card.getAttribute('data-panel');
-        const data = panelData[key];
-        if(!data) return;
-        panelContent.innerHTML = `
-          <h2>${data.title}</h2>
-          <div class="panel-text">${data.text}</div>
-        `;
-        panel.classList.add('open');
-      });
-    });
+    function openPanel(key){
+      const data = panelData[key];
+      if(!data) return;
+      panelContent.innerHTML = `
+        <h2>${data.title}</h2>
+        <div class="panel-text">${data.text}</div>
+      `;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden','false');
+    }
 
-    const closePanel = ()=>panel.classList.remove('open');
+    function closePanel(){ panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); }
+
+    cards.forEach(card=>{
+      card.addEventListener('click',()=>openPanel(card.getAttribute('data-panel')));
+    });
     panelClose.addEventListener('click',closePanel);
     panel.addEventListener('click',e=>{ if(e.target===panel) closePanel(); });
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePanel(); });
