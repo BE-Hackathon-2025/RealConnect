@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Real Connect – Wellness</title>
+  <!-- Uses our global styles (gradient, navbar, cards, panel, etc.) -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-logo">The Real Connect</div>
     <ul class="navbar-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="wellness.html">Wellness</a></li>
+      <li><a href="wellness.html" class="active">Wellness</a></li>
       <li><a href="essentials.html">Essentials</a></li>
       <li><a href="work.html">Work & Growth</a></li>
       <li><a href="legal.html">Legal & Rights</a></li>
@@ -19,27 +21,119 @@
       <li><a href="community.html">Community Wall</a></li>
     </ul>
   </nav>
+
+  <!-- HERO -->
   <section class="page-hero">
     <h1>Wellness Resources</h1>
     <p>Explore mental health, counseling, fitness, self-care, and support resources curated for you.</p>
     <a href="index.html" class="back-home-btn">← Back to Home</a>
   </section>
+
+  <!-- CARDS (row) -->
   <main class="page-main">
-    <div class="resource-card">
+    <div class="resource-card" data-panel="mental">
       <h3>Mental Health Support</h3>
       <p>Find therapists, counseling hotlines, crisis support, and peer circles.</p>
     </div>
-    <div class="resource-card">
+
+    <div class="resource-card" data-panel="fitness">
       <h3>Fitness Activities</h3>
       <p>Search for local gyms, free virtual fitness classes, and walk groups.</p>
     </div>
-    <div class="resource-card">
+
+    <div class="resource-card" data-panel="events">
       <h3>Wellness Events</h3>
       <p>Join mindfulness workshops, meditation sessions, and wellness activities near you.</p>
     </div>
   </main>
+
+  <!-- SLIDE-OUT PANEL (same component used on other pages) -->
+  <aside class="slide-panel" id="slidePanel" aria-hidden="true">
+    <button class="panel-close" id="panelClose" aria-label="Close panel">&times;</button>
+    <div class="panel-content" id="panelContent"></div>
+  </aside>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <span>&copy; 2025 The Real Connect. Wellness & Community for all.</span>
   </footer>
+
+  <!-- PAGE SCRIPT (self-contained) -->
+  <script>
+    // Content for the slide panel
+    const panelData = {
+      mental: {
+        title: "Mental Health Support",
+        html: `
+          <p>Connect with licensed therapists, free hotlines, crisis resources, and peer support circles.</p>
+          <ul>
+            <li><a href="https://988lifeline.org" target="_blank" rel="noopener">988 Suicide & Crisis Lifeline</a> – call/text 988</li>
+            <li><a href="https://www.opencounseling.com/hotlines/us" target="_blank" rel="noopener">Nationwide hotlines directory</a></li>
+            <li><a href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener">Find a therapist (Psychology Today)</a></li>
+            <li><a href="https://www.nami.org/Support-Education/NAMI-HelpLine" target="_blank" rel="noopener">NAMI HelpLine</a></li>
+          </ul>
+        `
+      },
+      fitness: {
+        title: "Fitness Activities",
+        html: `
+          <p>Move your body and boost your mood with local and virtual options.</p>
+          <ul>
+            <li>Search & try free classes on YouTube (yoga, HIIT, mobility).</li>
+            <li><a href="https://www.ymca.org/find-your-y" target="_blank" rel="noopener">Local YMCA</a> – community gyms & programs</li>
+            <li><a href="https://www.meetup.com/find/?keywords=walking%20group" target="_blank" rel="noopener">Walking groups on Meetup</a></li>
+            <li>Track progress with a simple weekly routine: M/W/F (strength) + T/Th (cardio).</li>
+          </ul>
+        `
+      },
+      events: {
+        title: "Wellness Events",
+        html: `
+          <p>Mindfulness, meditation, and wellness experiences to recharge.</p>
+          <ul>
+            <li><a href="https://www.eventbrite.com/d/online/meditation/" target="_blank" rel="noopener">Eventbrite</a> – meditation & wellness workshops</li>
+            <li><a href="https://www.meetup.com/topics/wellness/" target="_blank" rel="noopener">Meetup</a> – local wellness meetups</li>
+            <li>Check your library or community centers for free sessions weekly.</li>
+          </ul>
+        `
+      }
+    };
+
+    const cards       = document.querySelectorAll('.resource-card[data-panel]');
+    const panel       = document.getElementById('slidePanel');
+    const panelClose  = document.getElementById('panelClose');
+    const panelContent= document.getElementById('panelContent');
+
+    function openPanel(key) {
+      const data = panelData[key];
+      if (!data) return;
+      panelContent.innerHTML = `
+        <h2>${data.title}</h2>
+        <div class="panel-text">${data.html}</div>
+      `;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('panel-active');
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('panel-active');
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        openPanel(card.getAttribute('data-panel'));
+      });
+    });
+    panelClose.addEventListener('click', closePanel);
+    panel.addEventListener('click', (e) => {
+      if (e.target === panel) closePanel();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePanel();
+    });
+  </script>
 </body>
 </html>
